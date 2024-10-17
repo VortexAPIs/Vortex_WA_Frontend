@@ -1,0 +1,226 @@
+.app {
+    display: flex;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+  .dropdown-menu{
+    --bs-dropdown-bg: white;
+  }
+  .modal{
+    --bs-modal-bg: white;
+  }
+  .lable{
+    color:rgb(235, 153, 2) !important;
+    font-size: larger;
+    background-color:transparent !important;
+    transform: translateY(100%) !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 5% !important;
+  }
+  .input-company{
+    border-radius:1rem !important;
+    background-color:white !important;
+    color:black !important;
+    min-height: 2rem !important;
+    font-size: 1.3rem !important;
+    border-top: none !important;
+    outline: transparent !important;
+  }
+  .side-nav {
+    width: 65px;
+    background: none;
+    transition: margin-left 1.0s ease, width 0.6s ease;
+    overflow-y: hidden;
+    justify-content: left;
+    box-shadow: 2px 5px 10px #4e4d4e;
+    height: calc(100vh - 62px);
+    margin-top: 0.1%;
+    bottom: 0px;
+    align-items: left !important;
+  }
+
+  
+  .side-nav-open {
+    width: 200px;
+    transition: margin-left 1.0s ease, width 0.6s ease;
+    overflow-y: hidden;
+    justify-content: left;
+    height: calc(100vh- 62px);
+    margin-top: 0.1%;
+    bottom: 0px;
+    align-items: left !important;
+  }
+  
+  .side-nav-frozen{
+    position: fixed;
+  }
+ .side-nav a {
+    padding: 10px 8px 6px 16px;
+    text-decoration: none;
+    display: block;
+    color: black;
+  }
+  .side-nav li {
+    margin-left:-30px;
+  }
+  .side-nav-open li {
+    margin-left:-15px;
+  }
+  
+  .side-nav a:hover,
+  .side-nav-open a:hover {
+    color: goldenrod;
+  }
+  .fade{
+    transition: ease-in-out 0.6s ease;
+  }
+  
+  .tn-icon-pack{
+    align-items:center;
+    vertical-align: middle;
+    justify-content: center;
+    font-size: 2rem;
+    height: 35px;
+    width: 35px;
+    margin-right: 20px;
+    cursor:pointer;
+    flex-direction: column;
+    padding-top: 5px;
+  }
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    flex-grow: 1;
+    transition: width 0.3s ease; 
+    overflow-y: auto;
+    
+  }
+  .main-content-frozen-open {
+    flex: 1;
+    padding: 20px;
+    margin-top: 10px;
+    margin-left: 260px;
+    flex-grow: 1;
+    transition: width 0.3s ease; 
+    
+  }
+  .main-content-frozen-close {
+    flex: 1;
+    padding: 20px;
+    margin-top: 10px;
+    margin-left: 75px;
+    flex-grow: 1;
+    transition: width 0.3s ease; 
+    
+  }
+  .top-nav {
+    top: 10%;
+    box-shadow: 5px 2px 10px #4e4d4e;
+    padding: 10px;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    vertical-align: middle;
+  }
+  
+  button {
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #555;
+  }
+  
+  #topToSide {
+    display: none;
+  }
+  #topToSideClose {
+    display: none;
+  }
+  
+  
+  
+  /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+  @media screen and (max-height: 450px) {
+    .side-nav {padding-top: 15px;}
+    .side-nav a {font-size: 18px;}
+  }
+  
+  @media (max-width: 990px) {
+    #topToSide {
+      display: block;
+    }
+    #topToSideClose {
+      display: block;
+    }
+  }
+  
+  /* Freeze TopNav when scrolling */
+  .top-nav.frozen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Adjust z-index as needed */
+  }
+  
+  /* Adjust main content width when TopNav is frozen */
+  .top-nav.frozen + .content {
+    padding-top: 60px; 
+  }
+  
+  .cards{
+    
+    color: black;
+    transition: 0.5s ease-in;
+  
+  }
+  .cards:hover{
+   
+    color: black;
+    transform: scale(1.07);
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 10px rgba(128, 128, 128, 0.295);
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: black;
+  }
+  
+  .pagination button {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    color: black;
+  }
+  
+  .pagination button.active {
+    background: #f6fafd;
+    color: black;
+    border-color: #007bff;
+  }
+  
+  .pagination button:disabled {
+    background: #ebebf7;
+    cursor: not-allowed;
+    color: black;
+  }
+  
+  
+  

@@ -1,0 +1,23 @@
+.testimonials {
+    background: linear-gradient(to bottom,
+    white, rgb(5, 191, 224), white);
+      color: white;
+      padding-bottom: 50px;
+      margin-top: -50px;
+    }
+    
+    .testimonials-list {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .testimonial-item {
+      background-color: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      width: 45%;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    

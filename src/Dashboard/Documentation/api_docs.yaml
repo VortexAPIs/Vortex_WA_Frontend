@@ -1,0 +1,409 @@
+openapi: 3.0.0
+info:
+  title: Vortex Whatsapp API
+  description: This API facilitates a chat platform based on WhatsApp, allowing users to send and receive text and media messages in private chats through designated endpoints. Additionally, users can retrieve the current status and screen of their session. Account-specific endpoints enable users to access information about products or registered phones, as well as to edit and remove these entries.
+  version: 1.0.1
+servers:
+  # Added by API Auto Mocking Plugin
+  # Added by API Auto Mocking Plugin
+  # - description: SwaggerHub API Auto Mocking
+  #   url: https://virtserver.swaggerhub.com/VIKRAMSINGH0/Vortex_Whatsapp_API/1.0.1
+  - description: Vortex APIs
+    url: https://api.vortexapis.com/api/v1
+  # - url: http://localhost:3001/api/v1
+tags:
+  - name: Vortex APIs
+    description: API endpoints for Vortex Whatsapp platform
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        content:
+          type: string
+          description: The message content
+        sender:
+          type: string
+          description: The ID of the sender
+        timestamp:
+          type: string
+          format: date-time
+          description: The time the message was sent
+
+    Notification:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      
+paths:
+  # Check UserName Availability
+  /auth/chkusername:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Check if username is not registered
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  minLength: 5
+                  example: "johndoe"
+      responses:
+        '200':
+          description: Username availability checked
+  # Check Email Availability
+  /auth/chkemail:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Check if email is not registered
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 5
+                  format: email
+                  example: "johndoe@example.com"
+      responses:
+        '200':
+          description: Email availability checked
+  # Check Mobile Number Registration With WhatsApp
+  /auth/checkNumberStatus:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Check if Mobile Number is a WhatsApp Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 12
+                  format: phone
+                  example: "918900000000"
+      responses:
+        '200':
+          description: Mobile Number Status Checked
+  /auth/signup:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: User registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 3
+                  example: "John Doe"
+                username:
+                  type: string
+                  minLength: 5
+                  example: "johndoe"
+                email:
+                  type: string
+                  format: email
+                  example: "johndoe@example.com"
+                mobile:
+                  type: string
+                  format: phone
+                  example: "911234567890"
+                password:
+                  type: string
+                  minLength: 8
+                  example: "Password@123"
+      responses:
+        '200':
+          description: Successfully registered
+        '400':
+          description: Validation error
+  /auth/login:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: User login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  minLength: 5
+                  example: "johndoe"
+                password:
+                  type: string
+                  minLength: 8
+                  example: "Password@123"
+      responses:
+        '200':
+          description: Successfully logged in
+        '400':
+          description: Validation error
+  /auth/fetchuser:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Get user details by id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  example: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      responses:
+        '200':
+          description: User details fetched successfully
+        '500':
+          description: Internal server error
+  /dash/company/create:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Create your company details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  minLength: 32
+                  example: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                company_name:
+                  type: string
+                  example: "abc pvt ltd"
+                address:
+                  type: string
+                  example: "154, abc, xyz - 111111"
+                company_email:
+                  type: string
+                  format: email
+                  example: "abc@xyz.com"
+                contact_number:
+                  type: string
+                  format: phone
+                  example: "918888888888"
+                company_website:
+                  type: string
+                  format: website
+                  example: "www.abc.com"
+      responses:
+        '200':
+          description: Company details added successfully
+        '400':
+          description: Error in adding company details
+        '500':
+          description: Internal server error
+  /company/fetchCompany:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Create your company details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  minLength: 32
+                  example: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      responses:
+        '200':
+          description: Company details fetched successfully
+        '400':
+          description: Error in fetching company details
+        '500':
+          description: Internal server error
+  /ticket/{id}:
+    get:
+      tags: 
+        - Vortex APIs
+      summary: Get a ticket by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Ticket ID
+      responses:
+        '200':
+          description: Ticket details
+  /ticket/reply/{id}:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Post a reply on a ticket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  example: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Ticket ID
+      responses:
+        '200':
+          description: Ticket details
+  /ticket/close/{id}:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Close a ticket by ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  example: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Ticket ID
+      responses:
+        '200':
+          description: Ticket details
+  /message/send:
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Send test message on Whatsapp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                to:
+                  type: string
+                  format: phone
+                  example: "911234567890"
+                  description: country code without + sign followed by phone number
+                message:
+                  type: string
+                  example: "Hello World"
+                filePathURL:
+                  type: string
+                  example: "https://api.vortexapis.com/api/v1/dash/announcement/announceFiles/file_1727334685913.png"
+      parameters:
+        - in: query
+          name: insid
+          schema:
+            type: string
+          required: true
+          description: Token ID
+        - in: header
+          name: key
+          schema:
+            type: string
+          required: true
+          description: API Key
+      responses:
+        '200':
+          description: Message sent
+        '500':
+          description: Internal Server Error
+  
+  /socket.io/:
+    get:
+      tags: 
+        - Vortex APIs
+      summary: Establish WebSocket connection
+      description: Opens a WebSocket connection to the server.
+      responses:
+        '101':
+          description: Switching Protocols
+
+    post:
+      tags: 
+        - Vortex APIs
+      summary: Send a message over WebSocket
+      description: Send a message to the server over an established WebSocket connection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: Acknowledgment of received message
+
+    x-websocket-events:
+      message:
+        summary: Receive a message
+        description: Receives a message from the server.
+        payload:
+          $ref: '#/components/schemas/Message'
+
+      notification:
+        summary: Receive a notification
+        description: Receives a notification from the server.
+        payload:
+          $ref: '#/components/schemas/Notification'
+
+      connect:
+        summary: Connection event
+        description: Emitted when a client connects to the server.
+
+      disconnect:
+        summary: Disconnection event
+        description: Emitted when a client disconnects from the server.
+
+security:
+  - BearerAuth: []

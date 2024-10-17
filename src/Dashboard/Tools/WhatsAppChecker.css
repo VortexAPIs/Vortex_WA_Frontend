@@ -1,0 +1,95 @@
+.whatsapp-checker {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #6200ea;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button i {
+    margin-right: 8px;
+}
+
+.result-section {
+    margin-top: 20px;
+}
+
+.success-message {
+    background-color: #28a745;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.success-message i {
+    margin-right: 10px;
+}
+.danger-message {
+    background-color: #aa2b2b;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.danger-message i {
+    margin-right: 10px;
+}
+
+.curl-command {
+    margin-top: 10px;
+    padding: 10px;
+    /* background-color: #f8f9fa; */
+    border-radius: 5px;
+}
+
+pre {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+pre button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    /* color: white; */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
